@@ -86,7 +86,7 @@ blddata = pd.DataFrame([
 ], columns=bldtyp)
 
 
-available_people = get_new_data(data, 0)
+available_people = get_new_data(data, 21)
 available_people_sorted = available_people.sort_values(['goodness'], ascending=[True])
 
 plt.scatter(available_people_sorted[1:1000]['frequency'], available_people_sorted[1:1000]['distance'])
@@ -95,12 +95,12 @@ cursup -= wekcon
 
 people_called = []
 
-for index, row in data.iterrows():
+for index, row in available_people_sorted.iterrows():
     bldid = bldtypdict[row['blood_group']]
     if cursup[bldid] < optsup[bldid]:
         u = np.random.rand()
         
-        if(u >= 0.8):    
+        if(u >= 0.5):    
             cursup[bldid] += 1
 
         people_called.append(row['id'])
